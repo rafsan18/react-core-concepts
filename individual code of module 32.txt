@@ -1,0 +1,746 @@
+################## 32.6 ###########################
+
+             Creating a Component
+
+Instruction : declare component using a function. The name of the function should start with a capital letter.
+
+
+
+
+///////////////  Code in App.js ////////////////////////
+
+
+
+
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <p>I am a react Person</p>
+        <Person></Person>
+        <Person></Person>
+        <Person></Person>
+      </header>
+    </div>
+  );
+}
+
+function Person() {
+  const personStyle = {
+    border: "2px solid red",
+    margin: "10px",
+    padding: "10px",
+  };
+  return (
+    <div style={personStyle}>
+      {/* <div
+      style={{ border: "2px solid yellow", margin: "10px", padding: "10px" }}
+    > */}
+      {/* inline style */}
+      <h1>Name: Shakib Al Hasan</h1>
+      <h3>Hero of the year</h3>
+    </div>
+  );
+}
+
+export default App;
+
+
+################## 32.7 ###########################
+
+
+
+	Passing dynamic data to component
+
+
+
+......... Code before cleaning ..................
+
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+
+function App() {
+  const nayoks = ["Anwar", "Jafor", "Alamgir", "Salman"];
+  return (
+    <div className="App">
+      <header className="App-header">
+        <p>I am a react Person</p>
+        <Person name={nayoks[0]} nayika="Moushumi"></Person>
+        <Person name="Jasim" nayika="Shabana"></Person>
+        <Person name="BappaRaz" nayika="Cheka"></Person>
+        <Person name="Elias K" nayika="Bobita"></Person>
+      </header>
+    </div>
+  );
+}
+
+function Person(props) {
+  const personStyle = {
+    border: "2px solid red",
+    margin: "10px",
+    padding: "10px",
+  };
+  return (
+    <div style={personStyle}>
+      <h1>Nayok: {props.name}</h1>
+      <h3>Hero of {props.nayika}</h3>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+
+................... Clean Code .......................
+
+
+
+
+
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+
+function App() {
+  const nayoks = ["Anwar", "Jafor", "Alamgir", "Salman"];
+  return (
+    <div className="App">
+      <header className="App-header">
+        <p>I am a react Person</p>
+        <Person name="Munna" job="Footballer"></Person>
+        <Person name="Masum" job="Cricketer"></Person>
+      </header>
+    </div>
+  );
+}
+
+function Person(props) {
+  return (
+    <div style={{ border: "2px solid yellow", margin: "10px" }}>
+      <h3>My Name is {props.name} </h3>
+      <p>I am a {props.job} </p>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+################## 32.8 ###########################
+
+
+
+..... Code while passing individual item of objece ........
+
+
+
+
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+
+function App() {
+  const nayoks = ["Anwar", "Jafor", "Alamgir", "Salman"];
+  const products = [
+    { name: "Photoshop", price: "$90.89" },
+    { name: "Illustrator", price: "$50.99" },
+    { name: "PDF Reader", price: "29.99" },
+  ];
+  return (
+    <div className="App">
+      <header className="App-header">
+        <p>I am a react Person</p>
+        <Product name={products[0].name} price={products[0].price}></Product>
+        <Person name="Munna" job="Footballer"></Person>
+        <Person name="Masum" job="Cricketer"></Person>
+      </header>
+    </div>
+  );
+}
+function Product(props) {
+  const productStyle = {
+    border: "1px solid grey",
+    borderRadius: "5px",
+    backgroundColor: "slateblue",
+    height: "200px",
+    width: "200px",
+    float: "left",
+  };
+
+  return (
+    <div style={productStyle}>
+      <h3>{props.name}</h3>
+      <h5>{props.price}</h5>
+      <button>Buy Now</button>
+    </div>
+  );
+}
+
+function Person(props) {
+  return (
+    <div style={{ border: "2px solid yellow", margin: "10px" }}>
+      <h3>My Name is {props.name} </h3>
+      <p>I am a {props.job} </p>
+    </div>
+  );
+}
+
+export default App;
+
+
+.............. Code when passes full object ...................
+
+
+
+
+
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+
+function App() {
+  const nayoks = ["Anwar", "Jafor", "Alamgir", "Salman"];
+  const products = [
+    { name: "Photoshop", price: "$90.89" },
+    { name: "Illustrator", price: "$50.99" },
+    { name: "PDF Reader", price: "29.99" },
+  ];
+  return (
+    <div className="App">
+      <header className="App-header">
+        <p>I am a react Person</p>
+        <Product product={products[0]}></Product>
+        <Person name="Munna" job="Footballer"></Person>
+        <Person name="Masum" job="Cricketer"></Person>
+      </header>
+    </div>
+  );
+}
+function Product(props) {
+  const productStyle = {
+    border: "1px solid grey",
+    borderRadius: "5px",
+    backgroundColor: "slateblue",
+    height: "200px",
+    width: "200px",
+    float: "left",
+  };
+  return (
+    <div style={productStyle}>
+      <h3>{props.product.name}</h3>
+      <h5>{props.product.price}</h5>
+      <button>Buy Now</button>
+    </div>
+  );
+}
+
+function Person(props) {
+  return (
+    <div style={{ border: "2px solid yellow", margin: "10px" }}>
+      <h3>My Name is {props.name} </h3>
+      <p>I am a {props.job} </p>
+    </div>
+  );
+}
+
+export default App;
+
+
+............. Code after destructuring props in Product ..............
+
+
+
+
+
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+
+function App() {
+  const nayoks = ["Anwar", "Jafor", "Alamgir", "Salman"];
+  const products = [
+    { name: "Photoshop", price: "$90.89" },
+    { name: "Illustrator", price: "$50.99" },
+    { name: "PDF Reader", price: "29.99" },
+  ];
+  return (
+    <div className="App">
+      <header className="App-header">
+        <p>I am a react Person</p>
+        <Product product={products[0]}></Product>
+        <Product product={products[1]}></Product>
+        <Person name="Munna" job="Footballer"></Person>
+        <Person name="Masum" job="Cricketer"></Person>
+      </header>
+    </div>
+  );
+}
+function Product(props) {
+  const productStyle = {
+    border: "1px solid grey",
+    borderRadius: "5px",
+    backgroundColor: "slateblue",
+    height: "200px",
+    width: "200px",
+    float: "left",
+    margin: "10px",
+  };
+  const { name, price } = props.product;
+  return (
+    <div style={productStyle}>
+      <h3>{name}</h3>
+      <h5>{price}</h5>
+      <button>Buy Now</button>
+    </div>
+  );
+}
+
+function Person(props) {
+  return (
+    <div style={{ border: "2px solid yellow", margin: "10px" }}>
+      <h3>My Name is {props.name} </h3>
+      <p>I am a {props.job} </p>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+################## 32.9 ###########################
+
+
+
+
+
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+
+function App() {
+  const nayoks = ["Anwar", "Jafor", "Alamgir", "Salman", "Bappi"];
+  const products = [
+    { name: "Photoshop", price: "$90.89" },
+    { name: "Illustrator", price: "$50.99" },
+    { name: "PDF Reader", price: "29.99" },
+    { name: "Premier El", price: "249.99" },
+  ];
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <p>I am a react Person</p>
+        <ul>
+          {/* not Dynamic */}
+          <li>{nayoks[0]}</li>
+          <li>{nayoks[1]}</li>
+          <li>{nayoks[2]}</li>
+        </ul>
+        <ul>
+          {/* Dynamic */}
+          {nayoks.map((nayok) => (
+            <li>{nayok}</li>
+          ))}
+        </ul>
+        <ul>
+          {/* dynamic */}
+          {products.map((product) => (
+            <li>{product.name}</li>
+          ))}
+        </ul>
+        {/* fully dynamic */}
+        {products.map((pd) => (
+          <Product product={pd}></Product>
+        ))}
+        {/* Not full Dynamic */}
+        <Product product={products[0]}></Product>
+        <Product product={products[1]}></Product>
+        <Person name="Munna" job="Footballer"></Person>
+        <Person name="Masum" job="Cricketer"></Person>
+      </header>
+    </div>
+  );
+}
+function Product(props) {
+  const productStyle = {
+    border: "1px solid grey",
+    borderRadius: "5px",
+    backgroundColor: "slateblue",
+    height: "200px",
+    width: "200px",
+    float: "left",
+    margin: "10px",
+  };
+  const { name, price } = props.product;
+  return (
+    <div style={productStyle}>
+      <h3>{name}</h3>
+      <h5>{price}</h5>
+      <button>Buy Now</button>
+    </div>
+  );
+}
+
+function Person(props) {
+  return (
+    <div style={{ border: "2px solid yellow", margin: "10px" }}>
+      <h3>My Name is {props.name} </h3>
+      <p>I am a {props.job} </p>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+
+################## 32.10 ###########################
+
+
+
+
+
+import React, { useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+
+function App() {
+  const nayoks = ["Anwar", "Jafor", "Alamgir", "Salman", "Bappi"];
+  const products = [
+    { name: "Photoshop", price: "$90.89" },
+    { name: "Illustrator", price: "$50.99" },
+    { name: "PDF Reader", price: "29.99" },
+    { name: "Premier El", price: "249.99" },
+  ];
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <p>I am a react Person</p>
+        <Counter></Counter>
+        <ul>
+          <li>{nayoks[0]}</li>
+          <li>{nayoks[1]}</li>
+          <li>{nayoks[2]}</li>
+        </ul>
+        <ul>
+          {nayoks.map((nayok) => (
+            <li>{nayok}</li>
+          ))}
+        </ul>
+        <ul>
+          {products.map((product) => (
+            <li>{product.name}</li>
+          ))}
+        </ul>
+
+        {products.map((pd) => (
+          <Product product={pd}></Product>
+        ))}
+
+        <Product product={products[0]}></Product>
+        <Product product={products[1]}></Product>
+        <Person name="Munna" job="Footballer"></Person>
+        <Person name="Masum" job="Cricketer"></Person>
+      </header>
+    </div>
+  );
+}
+
+function Counter() {
+  const [count, setCount] = useState(10);
+  return (
+    <div>
+      <h1>Count: {count}</h1>
+    </div>
+  );
+}
+function Product(props) {
+  const productStyle = {
+    border: "1px solid grey",
+    borderRadius: "5px",
+    backgroundColor: "slateblue",
+    height: "200px",
+    width: "200px",
+    float: "left",
+    margin: "10px",
+  };
+  const { name, price } = props.product;
+  return (
+    <div style={productStyle}>
+      <h3>{name}</h3>
+      <h5>{price}</h5>
+      <button>Buy Now</button>
+    </div>
+  );
+}
+
+function Person(props) {
+  return (
+    <div style={{ border: "2px solid yellow", margin: "10px" }}>
+      <h3>My Name is {props.name} </h3>
+      <p>I am a {props.job} </p>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+################## 32.11 ###########################
+
+
+
+
+
+import React, { useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+
+function App() {
+  const nayoks = ["Anwar", "Jafor", "Alamgir", "Salman", "Bappi"];
+  const products = [
+    { name: "Photoshop", price: "$90.89" },
+    { name: "Illustrator", price: "$50.99" },
+    { name: "PDF Reader", price: "29.99" },
+    { name: "Premier El", price: "249.99" },
+  ];
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <p>I am a react Person</p>
+        <Counter></Counter>
+        <ul>
+          <li>{nayoks[0]}</li>
+          <li>{nayoks[1]}</li>
+          <li>{nayoks[2]}</li>
+        </ul>
+        <ul>
+          {nayoks.map((nayok) => (
+            <li>{nayok}</li>
+          ))}
+        </ul>
+        <ul>
+          {products.map((product) => (
+            <li>{product.name}</li>
+          ))}
+        </ul>
+
+        {products.map((pd) => (
+          <Product product={pd}></Product>
+        ))}
+
+        <Product product={products[0]}></Product>
+        <Product product={products[1]}></Product>
+        <Person name="Munna" job="Footballer"></Person>
+        <Person name="Masum" job="Cricketer"></Person>
+      </header>
+    </div>
+  );
+}
+
+function Counter() {
+  const [count, setCount] = useState(0);
+  const handleIncrease = () => setCount(count + 1);
+
+  return (
+    <div>
+      <h1>Count: {count}</h1>
+      <button onClick={() => setCount(count - 1)}>Decrease</button>
+      <button onClick={handleIncrease}>Increase</button>
+    </div>
+  );
+}
+function Product(props) {
+  const productStyle = {
+    border: "1px solid grey",
+    borderRadius: "5px",
+    backgroundColor: "slateblue",
+    height: "200px",
+    width: "200px",
+    float: "left",
+    margin: "10px",
+  };
+  const { name, price } = props.product;
+  return (
+    <div style={productStyle}>
+      <h3>{name}</h3>
+      <h5>{price}</h5>
+      <button>Buy Now</button>
+    </div>
+  );
+}
+
+function Person(props) {
+  return (
+    <div style={{ border: "2px solid yellow", margin: "10px" }}>
+      <h3>My Name is {props.name} </h3>
+      <p>I am a {props.job} </p>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+
+################## 32.12 ###########################
+
+
+
+
+import React, { useState, useEffect } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+
+function App() {
+  const nayoks = ["Anwar", "Jafor", "Alamgir", "Salman", "Bappi"];
+  const products = [
+    { name: "Photoshop", price: "$90.89" },
+    { name: "Illustrator", price: "$50.99" },
+    { name: "PDF Reader", price: "29.99" },
+    { name: "Premier El", price: "249.99" },
+  ];
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <p>I am a react Person</p>
+        <Counter></Counter>
+        <Users></Users>
+        <ul>
+          <li>{nayoks[0]}</li>
+          <li>{nayoks[1]}</li>
+          <li>{nayoks[2]}</li>
+        </ul>
+        <ul>
+          {nayoks.map((nayok) => (
+            <li>{nayok}</li>
+          ))}
+        </ul>
+        <ul>
+          {products.map((product) => (
+            <li>{product.name}</li>
+          ))}
+        </ul>
+
+        {products.map((pd) => (
+          <Product product={pd}></Product>
+        ))}
+
+        <Product product={products[0]}></Product>
+        <Product product={products[1]}></Product>
+        <Person name="Munna" job="Footballer"></Person>
+        <Person name="Masum" job="Cricketer"></Person>
+      </header>
+    </div>
+  );
+}
+
+function Counter() {
+  const [count, setCount] = useState(0);
+  const handleIncrease = () => setCount(count + 1);
+
+  return (
+    <div>
+      <h1>Count: {count}</h1>
+      <button onClick={() => setCount(count - 1)}>Decrease</button>
+      <button onClick={handleIncrease}>Increase</button>
+    </div>
+  );
+}
+function Users() {
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    fetch(`https://jsonplaceholder.typicode.com/users`)
+      .then((res) => res.json())
+      .then((data) => setUsers(data));
+  }, []);
+  const userStyle = {
+    textAlign: "left",
+  };
+  return (
+    <div>
+      <h3>Dynamic Users: {users.length}</h3>
+      <ul style={userStyle}>
+        {users.map((user) => (
+          <li>
+            {user.name}------ {user.phone}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+function Product(props) {
+  const productStyle = {
+    border: "1px solid grey",
+    borderRadius: "5px",
+    backgroundColor: "slateblue",
+    height: "200px",
+    width: "200px",
+    float: "left",
+    margin: "10px",
+  };
+  const { name, price } = props.product;
+  return (
+    <div style={productStyle}>
+      <h3>{name}</h3>
+      <h5>{price}</h5>
+      <button>Buy Now</button>
+    </div>
+  );
+}
+
+function Person(props) {
+  return (
+    <div style={{ border: "2px solid yellow", margin: "10px" }}>
+      <h3>My Name is {props.name} </h3>
+      <p>I am a {props.job} </p>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
